@@ -1,0 +1,13 @@
+#!/bin/sh
+./denoise-1 |
+    grep \
+    -e '\bFAIL\b' \
+    -e '\bFAILED\b' \
+    -e '\b[Ff]ail\b' \
+    -e '\b[Ff]ailed\b' \
+    -e '\bERROR\b' \
+    -e '\b[Ee]rror\b' \
+    -e 'could not' \
+    -e 'timed out' \
+    -e 'to be empty' |
+    sort -u

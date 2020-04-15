@@ -1,0 +1,2 @@
+#!/bin/sh
+./denoise-2 | sha256sum | cut -d' ' -f1

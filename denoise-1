@@ -1,0 +1,12 @@
+#!/bin/sh
+exec gsed '
+    s/[0-9a-f]\{64,\}/HASH/g
+    s/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/DATE/g
+    s/[A-Z][a-z][a-z] [ 0-9][0-9]/DATE/g
+    s/[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/TIME/g
+    s/\([ =:"._-]\)\([A-Za-z][0-9A-Za-z/+]*[0-9]\|[0-9][0-9A-Za-z/+]*[A-Za-z]\|[0-9A-Za-z/+]*[BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz]\{4,\}\|[0-9A-Za-z/+]*[0-9]\{4,\}\)[0-9A-Za-z/+]*/\1RANDOM/g
+    s/id=[0-9A-Za-z/+]\{1,\}/id=RANDOM/g
+    s/[0-9][0-9]*/0/g
+    s,\\n[0-9A-Za-z][0-9A-Za-z/\+=]*,\\nRANDOM,g
+    s/Bearer [0-9A-Za-z._-]*/Bearer RANDOM/g
+'
